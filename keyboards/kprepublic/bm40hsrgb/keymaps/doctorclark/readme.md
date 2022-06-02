@@ -2,7 +2,7 @@
 
 Purposes: discover and clarify ways to control lighting on this board.
 
-#####Keycap sizes
+###Keycap sizes
 All are 1u in height--widths shown below
 ```
 ,-----------------------------------------------------------------------.
@@ -16,7 +16,7 @@ All are 1u in height--widths shown below
 `-----------------------------------------------------------------------'
 ```
 
-#####RGB LED #s
+##RGB LED #s
 The underglow LEDs "wrap backwards" right to left in the approximate locations below, relative to the top keys.
 ```
 ,-----------------------------------------------------------------------.
