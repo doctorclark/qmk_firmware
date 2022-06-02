@@ -2,7 +2,8 @@
 
 Purposes: discover and clarify ways to control lighting on this board.
 
-Keycap sizes (all are 1u in height--widths shown below)
+#####Keycap sizes
+All are 1u in height--widths shown below
 ```
 ,-----------------------------------------------------------------------.
 | 1u  | 1u  | 1u  | 1u  | 1u  | 1u  | 1u  | 1u  | 1u  | 1u  | 1u  | 1u  | *R3 keycaps*
@@ -15,7 +16,8 @@ Keycap sizes (all are 1u in height--widths shown below)
 `-----------------------------------------------------------------------'
 ```
 
-RGB LED #s
+#####RGB LED #s
+The underglow LEDs "wrap backwards" right to left in the approximate locations below, relative to the top keys.
 ```
 ,-----------------------------------------------------------------------.
 |  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  | 10  | 11  |
@@ -32,7 +34,8 @@ Under:     48        47       46        45       44        43
 # Layers
 (Current layout visualization at https://ddc.me/bm43doctorclark)
 
-BASE layer
+#####BASE layer
+This is pretty much standard except for the [Grave Escape](https://docs.qmk.fm/#/feature_grave_esc) ("EGRV"), the [mod-tapped](https://docs.qmk.fm/#/mod_tap) left shift / capslock, and the two [layer](https://docs.qmk.fm/#/feature_layers) tap-toggles. 
 ```
 ,-----------------------------------------------------------------------.
 |EGRV |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |Bscp |
@@ -45,7 +48,8 @@ BASE layer
 `-----------------------------------------------------------------------'
 ```
 
-NUMPAD layer
+#####NUMPAD layer
+This layout tries to position match as close as possible the numbers and math symbol placement as a standard num-pad. However, this layout uses the keycodes from the standard "row 4" numbers, so that other punctuation symbols (e.g., "!") can be accessed. (The only drawbacks to this are the loss of ability to enter ALT codes, and the "loss" of the non-numlock features of the standard numpad keys.)
 ```
 ,-----------------------------------------------------------------------.
 |TO() |RTOG |RVAD |RVAI |     |     |  -  |  7  |  8  |  9  |  0  | Del |
@@ -58,12 +62,21 @@ NUMPAD layer
 `-----------------------------------------------------------------------'
 ```
 
-PLAYER layer
+#####PLAYER layer
+This layer has: 
+- Function keys (matching the numpad numbering)
+- Mouse controls including 
+  - Main mouse buttons on the two space bars
+  - Buttons 4 and 5 (back and forward)
+  - Mouse scrolling, including button 3 for applications that use that style of scrolling
+- Boot mode enable
+- Document navigation including page-up/down and home/end
+- Volume mute and volume up/down
 ```
 ,-----------------------------------------------------------------------.
-|TO() |     | WhU |     |BOOT |VOLU |VOLD | F7  | F8  | F9  | F10 |Bscp |
+|TO() |Btn3 | WhU |     |BOOT |VOLU |VOLD | F7  | F8  | F9  | F10 |Bscp |
 |-----------------------------------------------------------------------+
-| Tab   | WhL | WhD | WhR |  F  |  G  |  H  | F4  | F5  | F6  |     \   |
+| Tab   | WhL | WhD | WhR |     |     |     | F4  | F5  | F6  |     \   |
 |-----------------------------------------------------------------------+
 |Shift/Caps |     |     |     |     |VMUTE| F1  | F2  |  [  |PGUP |  ]  |
 |-----------------------------------------------------------------------+
