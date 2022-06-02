@@ -142,11 +142,15 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 enum custom_keycodes {
     DDCURL = SAFE_RANGE,
     DDC_OM,
+	CTL_A = LT(10, KC_A), // Tap for a, hold to select all
 	CTL_C = LT(10, KC_C), // Tap for c, hold to copy
-	CTL_V = LT(10, KC_V), // Tap for v, hold to paste
+	CTL_N = LT(10, KC_N), // Tap for n, hold for new doc
+	CTL_P = LT(10, KC_P), // Tap for p, hold to print
+	CTL_S = LT(10, KC_S), // Tap for s, hold to save
     CTL_X = LT(10, KC_X), // Tap for x, hold to cut
-    CTL_Z = LT(10, KC_Z), // Tap for z, hold to undo
+	CTL_V = LT(10, KC_V), // Tap for v, hold to paste
     CTL_Y = LT(10, KC_Y), // Tap for y, hold to redo
+    CTL_Z = LT(10, KC_Z), // Tap for z, hold to undo
 	VHLDBT, // 
 	CADEL // Tap for delete, hold for CTL+ALT+DEL
 };
@@ -229,9 +233,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
-        TD(TD_EGRV),  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   CTL_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-        KC_TAB,    		KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,     KC_ENT,
-        LSFT_T(KC_CAPS),   CTL_Z,    CTL_X,    CTL_C,    CTL_V,    KC_B,    KC_N,    KC_M,    KC_COMM,   KC_UP,    KC_DOT,
+        TD(TD_EGRV),  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   CTL_Y,    KC_U,    KC_I,    KC_O,   CTL_P,    KC_BSPC,
+        KC_TAB,    	CTL_A,   CTL_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,     KC_ENT,
+        LSFT_T(KC_CAPS),   CTL_Z,    CTL_X,    CTL_C,    CTL_V,    KC_B,   CTL_N,    KC_M,    KC_COMM,   KC_UP,    KC_DOT,
         KC_LCTL, KC_LGUI, KC_LALT,    TT(_NUMPAD),              KC_SPC,       TT(_PLAYER), KC_LEFT,   KC_DOWN,  KC_RGHT
     ),
     [_NUMPAD] = LAYOUT(
@@ -242,7 +246,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_PLAYER] = LAYOUT(
         TO(_BASE), KC_BTN3, KC_WH_U, KC_J, QK_BOOT, KC_VOLD,  KC_VOLU,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   CADEL,
-        H(3B1),      KC_WH_L, KC_WH_D, KC_WH_R, _______, _______, DT_PRNT,    KC_F4,   KC_F5,   KC_F6,      KC_BSLS,
+        H(3B1),      KC_WH_L, KC_WH_D, KC_WH_R, _______, _______, _______,    KC_F4,   KC_F5,   KC_F6,      KC_BSLS,
 		_______,        _______,   _______,   _______,  _______,  KC_MUTE,    KC_F1, KC_F2, KC_LBRC, KC_PGUP, KC_RBRC,
         _______, KC_BTN4, KC_BTN5,  KC_BTN1,              KC_BTN2,            _______,      KC_HOME, KC_PGDN, KC_END
     ),
