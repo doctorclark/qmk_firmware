@@ -2,7 +2,7 @@
 
 Purposes: discover and clarify ways to control lighting on this board.
 
-###Keycap sizes
+### Keycap sizes
 All are 1u in height--widths shown below
 ```
 ,-----------------------------------------------------------------------.
@@ -16,7 +16,7 @@ All are 1u in height--widths shown below
 `-----------------------------------------------------------------------'
 ```
 
-##RGB LED #s
+## RGB LED #s
 The underglow LEDs "wrap backwards" right to left in the approximate locations below, relative to the top keys.
 ```
 ,-----------------------------------------------------------------------.
@@ -34,7 +34,7 @@ Under:     48        47       46        45       44        43
 # Layers
 (Current layout visualization at https://ddc.me/bm43doctorclark)
 
-#####BASE layer
+##### BASE layer
 This is pretty much standard except for the [Grave Escape](https://docs.qmk.fm/#/feature_grave_esc) ("EGRV"), the [mod-tapped](https://docs.qmk.fm/#/mod_tap) left shift / capslock, and the two [layer](https://docs.qmk.fm/#/feature_layers) tap-toggles. 
 ```
 ,-----------------------------------------------------------------------.
