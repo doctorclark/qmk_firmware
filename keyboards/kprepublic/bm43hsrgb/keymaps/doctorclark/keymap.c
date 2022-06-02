@@ -14,29 +14,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*-----------------------
-DDC Edits:
-Mod-Tap https://docs.qmk.fm/#:~:text=Leader%20Key-,Mod%2DTap,-Macros to make Left-Shift act as
-a shift key when held, but act as a Capslock key when pressed.
-
-Mouse buttons require
-*** "MOUSEKEY_ENABLE = yes" in rules.mk ***
-
-Unicode requires
-*** "UNICODE_ENABLE = yes" in rules.mk ***
-*** "#define UNICODE_SELECTED_MODES UC_WINC" in config.h ***
-
-Tap dance requires
-*** "TAP_DANCE_ENABLE = yes" in rules.mk ***
-*** "#define TAPPING_TERM 175" in config.h ***
-*** "#define TAPPING_TOGGLE 2" in config.h ***
-
-RGB experiment based on https://docs.qmk.fm/#/feature_rgb_matrix resulted in no progress--this board uses RGB Lights, NOT matrix
-
-EXTRA COLOR
-*** "#define HSV_DKORANGE      8, 255, 125" added in color.h ***
-
-------------------------*/
+/*------------
+-- DDC Edits:
+-- Mod-Tap https://docs.qmk.fm/#:~:text=Leader%20Key-,Mod%2DTap,-Macros to make Left-Shift act as
+-- a shift key when held, but act as a Capslock key when pressed.
+-- 
+-- Mouse buttons require
+-- *** "MOUSEKEY_ENABLE = yes" in rules.mk ***
+-- 
+-- Unicode requires
+-- *** "UNICODE_ENABLE = yes" in rules.mk ***
+-- *** "#define UNICODE_SELECTED_MODES UC_WINC" in config.h ***
+-- 
+-- Tap dance requires
+-- *** "TAP_DANCE_ENABLE = yes" in rules.mk ***
+-- *** "#define TAPPING_TERM 175" in config.h ***
+-- *** "#define TAPPING_TOGGLE 2" in config.h ***
+-- 
+-- RGB experiment based on https://docs.qmk.fm/#/feature_rgb_matrix resulted in no progress--this board uses RGB Lights, NOT matrix
+-- 
+-- EXTRA COLOR
+-- *** "#define HSV_DKORANGE      8, 255, 125" added in color.h ***
+------------*/
 
 #include QMK_KEYBOARD_H
 #define H(x) UC(0x##x) // I don't fully understand *how* this works, but it does.
@@ -279,8 +278,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_PLAYER] = LAYOUT(
         TO(_BASE), KC_BTN3, KC_WH_U, KC_J, QK_BOOT, KC_VOLD,  KC_VOLU,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   CADEL,
-        H(3B1),      KC_WH_L, KC_WH_D, KC_WH_R, _______, _______, _______,    KC_F4,   KC_F5,   KC_F6,      KC_BSLS,
-		_______,        _______,   _______,   _______,  _______,  KC_MUTE,    KC_F1, KC_F2, KC_LBRC, KC_PGUP, KC_RBRC,
+        UC(0x2192)      KC_WH_L, KC_WH_D, KC_WH_R, _______, _______, _______,    KC_F4,   KC_F5,   KC_F6,      KC_BSLS,
+		_______,        H(3B1) ,   H(3B2) ,   H(3BC) ,  H(3C9) ,  KC_MUTE,    KC_F1, KC_F2, KC_LBRC, KC_PGUP, KC_RBRC,
         _______, KC_BTN4, KC_BTN5,  KC_BTN1,              KC_BTN2,            _______,      KC_HOME, KC_PGDN, KC_END
     ),
 	
