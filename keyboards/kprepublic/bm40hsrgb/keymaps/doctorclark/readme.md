@@ -1,7 +1,7 @@
 # Personal Layout of [doctorclark](https://github.com/doctorclark)
 
 Purposes: discover and clarify ways to control lighting on this board.
-
+'''
 Keycap sizes (all are 1u in height--widths shown below)
 ,-----------------------------------------------------------------------.
 | 1u  | 1u  | 1u  | 1u  | 1u  | 1u  | 1u  | 1u  | 1u  | 1u  | 1u  | 1u  | *R3 keycaps*
@@ -61,3 +61,4 @@ PLAYER layer
 |-----------------------------------------------------------------------+
 |Ctrl |Btn4 |Btn5 |     Btn1      |     Btn2    |     |HOME |PGDN | END |
 `-----------------------------------------------------------------------'
+'''
