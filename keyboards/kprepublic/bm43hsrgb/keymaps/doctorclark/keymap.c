@@ -23,15 +23,19 @@ Mouse buttons require
 *** "MOUSEKEY_ENABLE = yes" in rules.mk ***
 
 Unicode requires
-*** "UNICODE_ENABLE = yes" to rules.mk ***
-*** "#define UNICODE_SELECTED_MODES UC_WINC" to config.h ***
+*** "UNICODE_ENABLE = yes" in rules.mk ***
+*** "#define UNICODE_SELECTED_MODES UC_WINC" in config.h ***
 
 Tap dance requires
-*** "TAP_DANCE_ENABLE = yes" to rules.mk ***
-*** "#define TAPPING_TERM 175" to config.h ***
-*** "#define TAPPING_TOGGLE 2" to config.h ***
+*** "TAP_DANCE_ENABLE = yes" in rules.mk ***
+*** "#define TAPPING_TERM 175" in config.h ***
+*** "#define TAPPING_TOGGLE 2" in config.h ***
 
 RGB experiment based on https://docs.qmk.fm/#/feature_rgb_matrix resulted in no progress--this board uses RGB Lights, NOT matrix
+
+EXTRA COLOR
+*** "#define HSV_DKORANGE      8, 255, 125" added in color.h ***
+
 ------------------------*/
 
 #include QMK_KEYBOARD_H
