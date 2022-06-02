@@ -164,11 +164,46 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING(SS_DOWN(X_LCTL)SS_DOWN(X_LALT)SS_DOWN(X_DEL)SS_UP(X_LCTL)SS_UP(X_LALT)SS_UP(X_DEL));	// hold action 
             } 
             return false; 
-    case CTL_C:
+    case CTL_A:
+        if (record->tap.count && record->event.pressed) { 
+                tap_code16(KC_A); //tap action 
+            } else if (record->event.pressed) {
+                SEND_STRING(SS_LCTL("a")); // hold action 
+            } 
+            return false; 
+     case CTL_C:
         if (record->tap.count && record->event.pressed) { 
                 tap_code16(KC_C); //tap action 
             } else if (record->event.pressed) {
                 SEND_STRING(SS_LCTL("c")); // hold action 
+            } 
+            return false; 
+    case CTL_N:
+        if (record->tap.count && record->event.pressed) { 
+                tap_code16(KC_N); //tap action 
+            } else if (record->event.pressed) {
+                SEND_STRING(SS_LCTL("n")); // hold action 
+            } 
+            return false; 
+    case CTL_S:
+        if (record->tap.count && record->event.pressed) { 
+                tap_code16(KC_S); //tap action 
+            } else if (record->event.pressed) {
+                SEND_STRING(SS_LCTL("s")); // hold action 
+            } 
+            return false; 
+     case CTL_P:
+        if (record->tap.count && record->event.pressed) { 
+                tap_code16(KC_P); //tap action 
+            } else if (record->event.pressed) {
+                SEND_STRING(SS_LCTL("p")); // hold action 
+            } 
+            return false; 
+    case CTL_X:
+        if (record->tap.count && record->event.pressed) { 
+                tap_code16(KC_X); //tap action 
+            } else if (record->event.pressed) {
+                SEND_STRING(SS_LCTL("x")); // hold action 
             } 
             return false; 
     case CTL_V:
@@ -178,13 +213,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING(SS_LCTL("v")); // hold action 
             } 
             return false;
-    case CTL_X:
+    case CTL_Y:
         if (record->tap.count && record->event.pressed) { 
-                tap_code16(KC_X); //tap action 
+                tap_code16(KC_Y); //tap action 
             } else if (record->event.pressed) {
-                SEND_STRING(SS_LCTL("x")); // hold action 
+                SEND_STRING(SS_LCTL("y")); // hold action 
             } 
-            return false; 
+            return false;
     case CTL_Z:
         if (record->tap.count && record->event.pressed) { 
                 tap_code16(KC_Z); //tap action 
@@ -192,13 +227,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING(SS_LCTL("z")); // hold action 
             } 
             return false; 
-    case CTL_Y:
-        if (record->tap.count && record->event.pressed) { 
-                tap_code16(KC_Y); //tap action 
-            } else if (record->event.pressed) {
-                SEND_STRING(SS_LCTL("y")); // hold action 
-            } 
-            return false; 
+
     case DDCURL:
         if (record->event.pressed) {
             // when keycode DDCURL is pressed
