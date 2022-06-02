@@ -278,7 +278,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_PLAYER] = LAYOUT(
         TO(_BASE), KC_BTN3, KC_WH_U, KC_J, QK_BOOT, KC_VOLD,  KC_VOLU,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   CADEL,
-        UC(0x2192)      KC_WH_L, KC_WH_D, KC_WH_R, _______, _______, _______,    KC_F4,   KC_F5,   KC_F6,      KC_BSLS,
+        UC(0x2192),      KC_WH_L, KC_WH_D, KC_WH_R, _______, _______, _______,    KC_F4,   KC_F5,   KC_F6,      KC_BSLS,
 		_______,        H(3B1) ,   H(3B2) ,   H(3BC) ,  H(3C9) ,  KC_MUTE,    KC_F1, KC_F2, KC_LBRC, KC_PGUP, KC_RBRC,
         _______, KC_BTN4, KC_BTN5,  KC_BTN1,              KC_BTN2,            _______,      KC_HOME, KC_PGDN, KC_END
     ),
