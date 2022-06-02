@@ -1,4 +1,4 @@
-/* Copyright 2021 bitstarr
+/* Edited version from an original that was Copyright 2021 bitstarr
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,35 +17,25 @@
 /*-----------------------
 DDC Edits:
 Mod-Tap https://docs.qmk.fm/#:~:text=Leader%20Key-,Mod%2DTap,-Macros to make Left-Shift act as
-a shift key when held, but act as a Capslock key when pressed. I don't know if long-press+wait 
-will be counted as a held key (and thus no action) or would still act as a tap and activate
-capslock?
+a shift key when held, but act as a Capslock key when pressed.
 
-ADDED MOUSE BUTTONS 1 and 2 to the left and right of the up arrow key on base layer.
-*** Need to have "MOUSEKEY_ENABLE = yes" in rules.mk for this to work**
-*** Need to add "UNICODE_ENABLE = yes" to rules.mk
-*** Need to add "#define UNICODE_SELECTED_MODES UC_WINC" to config.h
+Mouse buttons require
+*** "MOUSEKEY_ENABLE = yes" in rules.mk ***
 
-*** Need to add "TAP_DANCE_ENABLE = yes" to rules.mk
-*** Need to add "#define TAPPING_TERM 175" to config.h 
-Added below: tap dance for escape key--double tap to initiate capslock
-    (does this change how CTL+ESC works, e.g. with AHK escape command?)
-To do:Tap dancing for punctuation!
+Unicode requires
+*** "UNICODE_ENABLE = yes" to rules.mk ***
+*** "#define UNICODE_SELECTED_MODES UC_WINC" to config.h ***
 
-*** Need to add "#define TAPPING_TOGGLE 2" to config.h
-Replaced the MO(1) to hold LYR to select layer 1 with TT(1) so that holding LYR will access that layer
-but double pressing LYR will activate the layer for use.
+Tap dance requires
+*** "TAP_DANCE_ENABLE = yes" to rules.mk ***
+*** "#define TAPPING_TERM 175" to config.h ***
+*** "#define TAPPING_TOGGLE 2" to config.h ***
 
-Added macros DDCBEST, DDCURL, and DDC_MO. 
-
-ADDED RGB experiment based on reading at https://docs.qmk.fm/#/feature_rgb_matrix
-    This code is supposed to do something to the lighting of the  alphanumeric keys when caps is 
-    activated, but I can't see in the code how it is confined to just these keys?
-
+RGB experiment based on https://docs.qmk.fm/#/feature_rgb_matrix resulted in no progress--this board uses RGB Lights, NOT matrix
 ------------------------*/
 
 #include QMK_KEYBOARD_H
-#define H(x) UC(0x##x)
+#define H(x) UC(0x##x) // I don't fully understand *how* this works, but it does.
 
 enum layers {
 	_BASE,
@@ -55,16 +45,16 @@ enum layers {
 
 
 /*```LED numbers on board
-,----------------------------------------------------------------------------.
-|   0   |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  | 10  |   11   |
-|----------------------------------------------------------------------------+
-|   12    | 13  | 14  | 15  | 16  | 17  | 18  | 19  | 20  | 21  |    22      |
-|----------------------------------------------------------------------------+
-|       23       | 24  | 25  | 26  | 27  | 28  | 29  | 30  | 31  |  32 | 33  |
-|----------------------------------------------------------------------------+
-|  34  |  35 |  36 |      37        |      38        |  39 | 40  | 41  | 42  |
-`----------------------------------------------------------------------------'
-Under     :   48       47       46       45        44        43
+,-----------------------------------------------------------------------.
+|  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  | 10  | 11  |
+|-----------------------------------------------------------------------+
+|  12   | 13  | 14  | 15  | 16  | 17  | 18  | 19  | 20  | 21  |   22    |
+|-----------------------------------------------------------------------+
+|     23    | 24  | 25  | 26  | 27  | 28  | 29  | 30  | 31  | 32  | 33  |
+|-----------------------------------------------------------------------+
+| 34  | 35  | 36  |       37       |     38     | 39  | 40  | 41  | 42  |
+`-----------------------------------------------------------------------'
+Under:     48        47       46        45       44        43
 ```*/
 
 const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -135,9 +125,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 
-//ABOVElightstuff
-
-
 // Tap Dance declarations
 enum {
     TD_EGRV,
@@ -148,18 +135,20 @@ enum {
 qk_tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Escape, twice for Grave
     [TD_EGRV] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_GRV),
-    [TD_BOOT] = ACTION_TAP_DANCE_DOUBLE(KC_J, KC_K) // this did not work :(
+    [TD_BOOT] = ACTION_TAP_DANCE_DOUBLE(KC_A, KC_B) // TD_BOOT experiment did not work, only basic keycodes work with tap dance, not QK_BOOT
 };
 
-// MACROOOOOOS https://docs.qmk.fm/#/feature_macros
+// MACROS https://docs.qmk.fm/#/feature_macros
 enum custom_keycodes {
-    DDCBEST = SAFE_RANGE,
-    DDCURL,
+    DDCURL = SAFE_RANGE,
     DDC_OM,
-	CTL_C = LT(10, KC_C), // custom keycode for C+
-	CTL_V = LT(10, KC_V), // custom keycode for C+
+	CTL_C = LT(10, KC_C), // Tap for c, hold to copy
+	CTL_V = LT(10, KC_V), // Tap for v, hold to paste
+    CTL_X = LT(10, KC_X), // Tap for x, hold to cut
+    CTL_Z = LT(10, KC_Z), // Tap for z, hold to undo
+    CTL_Y = LT(10, KC_Y), // Tap for y, hold to redo
 	VHLDBT, // 
-	CADEL
+	CADEL // Tap for delete, hold for CTL+ALT+DEL
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -182,7 +171,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->tap.count && record->event.pressed) { 
                 tap_code16(KC_V); //tap action 
             } else if (record->event.pressed) {
-                SEND_STRING(SS_LCTL("cv")); // hold action 
+                SEND_STRING(SS_LCTL("v")); // hold action 
+            } 
+            return false;
+    case CTL_X:
+        if (record->tap.count && record->event.pressed) { 
+                tap_code16(KC_X); //tap action 
+            } else if (record->event.pressed) {
+                SEND_STRING(SS_LCTL("x")); // hold action 
+            } 
+            return false; 
+    case CTL_Z:
+        if (record->tap.count && record->event.pressed) { 
+                tap_code16(KC_Z); //tap action 
+            } else if (record->event.pressed) {
+                SEND_STRING(SS_LCTL("z")); // hold action 
+            } 
+            return false; 
+    case CTL_Y:
+        if (record->tap.count && record->event.pressed) { 
+                tap_code16(KC_Y); //tap action 
+            } else if (record->event.pressed) {
+                SEND_STRING(SS_LCTL("y")); // hold action 
             } 
             return false; 
     case DDCURL:
@@ -193,7 +203,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             // when keycode DDCURL is released
         }
         break;
-
+ 
     case DDC_OM:
         if (record->event.pressed) {
            SEND_STRING(SS_LCTL("ac")); // selects all and copies
@@ -219,9 +229,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
-        TD(TD_EGRV),  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+        TD(TD_EGRV),  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   CTL_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
         KC_TAB,    		KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,     KC_ENT,
-        LSFT_T(KC_CAPS),    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,   KC_UP,    KC_DOT,
+        LSFT_T(KC_CAPS),   CTL_Z,    CTL_X,    CTL_C,    CTL_V,    KC_B,    KC_N,    KC_M,    KC_COMM,   KC_UP,    KC_DOT,
         KC_LCTL, KC_LGUI, KC_LALT,    TT(_NUMPAD),              KC_SPC,       TT(_PLAYER), KC_LEFT,   KC_DOWN,  KC_RGHT
     ),
     [_NUMPAD] = LAYOUT(
