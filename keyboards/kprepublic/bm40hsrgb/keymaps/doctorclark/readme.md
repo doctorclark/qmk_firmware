@@ -65,7 +65,7 @@ This layout tries to position match as close as possible the numbers and math sy
 ### PLAYER layer
 This layer has: 
 - Function keys (matching the numpad numbering)
-- Mouse controls including 
+- Mouse controls (because I have a [Ploopy Nano](https://ploopy.co/nano-trackball/)) 
   - Main mouse buttons on the two space bars
   - Buttons 4 and 5 (back and forward)
   - Mouse scrolling, including button 3 for applications that use that style of scrolling
