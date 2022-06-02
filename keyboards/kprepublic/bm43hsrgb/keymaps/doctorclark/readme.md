@@ -35,14 +35,14 @@ Under:     48        47       46        45       44        43
 (Current layout visualization at https://ddc.me/bm43doctorclark)
 
 ### BASE layer
-This is pretty much standard except for the [Grave Escape](https://docs.qmk.fm/#/feature_grave_esc) ("EGRV"), the [mod-tapped](https://docs.qmk.fm/#/mod_tap) left shift / capslock, and the two [layer](https://docs.qmk.fm/#/feature_layers) tap-toggles. 
+This is pretty much standard except for the [Grave Escape](https://docs.qmk.fm/#/feature_grave_esc) ("EGRV"), the [mod-tapped](https://docs.qmk.fm/#/mod_tap) left shift / capslock, and the two [layer](https://docs.qmk.fm/#/feature_layers) tap-toggles. Letters with * indicate hold action for Ctl+key.
 ```
 ,-----------------------------------------------------------------------.
-|EGRV |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |Bscp |
+|EGRV |  Q  |  W  |  E  |  R  |  T  |  Y* |  U  |  I  |  O  |  P* |Bscp |
 |-----------------------------------------------------------------------+
-| Tab   |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |  Enter  |
+| Tab   |  A* |  S* |  D  |  F  |  G  |  H  |  J  |  K  |  L  |  Enter  |
 |-----------------------------------------------------------------------+
-|Shift/Caps |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  UP |  .  |
+|Shift/Caps |  Z* |  X* |  C* |  V* |  B* |  N* |  M  |  ,  |  UP |  .  |
 |-----------------------------------------------------------------------+
 |Ctrl | Win | Alt |      TTL1     |    Space    |TTL2 | LT  |  DN | RT  |
 `-----------------------------------------------------------------------'
